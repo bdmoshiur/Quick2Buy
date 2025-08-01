@@ -108,6 +108,10 @@
                 <div class="col-12 col-md-5">
                     <div class="d-flex flex-column gap-3">
                         <div>
+                            <label for="topLogo" class="form-label fw-semibold">উপরের বাম লোগো আপলোড করুন</label>
+                            <input type="file" class="form-control" id="topLogo" accept="image/*">
+                        </div>
+                        <div>
                             <label for="mainImage" class="form-label fw-semibold">পণ্যের ছবি নির্বাচন করুন</label>
                             <input type="file" class="form-control" id="mainImage" accept="image/*">
                         </div>
@@ -127,7 +131,7 @@
                     <div class="news-card">
                         <div class="image-container">
                             <img class="news-image" src="https://img.freepik.com/free-photo/blue-teal-sand-paper_53876-92791.jpg" alt="Product Image">
-                            <img class="top-left-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Shopping_cart_icon.svg/768px-Shopping_cart_icon.svg.png" alt="Quick2Buy Logo">
+                            <img class="top-left-logo" src="" alt="Quick2Buy Logo">
                         </div>
                         <div class="caption">
                             <span>আজই অর্ডার করুন!</span>
@@ -173,6 +177,17 @@
             } else {
                 $('#footerLogo').hide();
                 $('.caption').removeClass('with-footer');
+            }
+        });
+
+        $('#topLogo').on('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.top-left-logo').attr('src', e.target.result).show();
+                };
+                reader.readAsDataURL(file);
             }
         });
 
